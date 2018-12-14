@@ -8,12 +8,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: './src/index.ts',
     output: {
-        path: path.resolve(__dirname, './docs/'),
+        path: path.resolve(__dirname, './dist/'),
         publicPath: '/',
         filename: 'build.js'
     },
     devServer: {
-        contentBase: path.join(__dirname, 'docs'),
+        contentBase: path.join(__dirname, 'dist'),
         publicPath: '/',
         watchContentBase: true,
         historyApiFallback: true,
