@@ -1,9 +1,9 @@
 <template>
     <div>
         <nav>
-            <img src='./assets/DroplitLabsLogo.svg' />
+            <img src='assets/DroplitLabsLogo.svg' />
             <div class='tag-line'>
-                We <span class='icon'><img src='./assets/noun_Heart_2070148_00e49b.svg' /></span> Open Source
+                We <span class='icon'><img src='assets/noun_Heart_2070148_00e49b.svg' /></span> Open Source
             </div>
         </nav>
         <div class='intro'>
