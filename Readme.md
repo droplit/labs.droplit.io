@@ -1,5 +1,5 @@
 # [labs.droplit.io](https://labs.droplit.io).
-![droplit labs](https://github.com/droplit/labs.droplit.io/raw/master/droplit-labs-logo.svg?sanitize=true =400px)
+![droplit labs](https://github.com/droplit/labs.droplit.io/raw/master/droplit-labs-logo.svg?sanitize=true)
 
 This is the site for all open-source projects created by the team at [droplit](https://droplit.io).
 # About
