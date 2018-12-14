@@ -9,12 +9,12 @@ module.exports = {
     entry: './src/index.ts',
     output: {
         path: path.resolve(__dirname, './dist/'),
-        publicPath: '/',
+        publicPath: '',
         filename: 'build.js'
     },
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
-        publicPath: '/',
+        publicPath: '',
         watchContentBase: true,
         historyApiFallback: true,
     },
