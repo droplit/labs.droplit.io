@@ -1,0 +1,37 @@
+@import './reset.scss';
+@import './_media.scss';
+html {
+    box-sizing: border-box;
+    background: #434343;
+    font-family: 'Oxygen', sans-serif;
+    @media(max-width: $width-computer) {
+        font-size: 16px;
+    }
+    @media(max-width: $width-tablets) {
+        font-size: 16px;
+    }
+    @media(max-width: $width-phablets) {
+        font-size: 14px;
+    }
+    @media(max-width: $width-phones) {
+        font-size: 12px;
+    }
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+$hyperlink-color: #12C480;
+a:link,
+a a:active,
+a:visited {
+    color: $hyperlink-color;
+    text-decoration: none;
+}
+
+a:hover {
+    color: lighten($hyperlink-color, 10%);
+}

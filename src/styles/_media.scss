@@ -1,0 +1,12 @@
+$width-phones: 320px;
+$width-phablets: 640px;
+$width-tablets: 768px;
+$width-computer:960px;
+// Sample order
+@media(max-width: $width-computer) {}
+
+@media(max-width: $width-tablets) {}
+
+@media(max-width: $width-phablets) {}
+
+@media(max-width: $width-phones) {}

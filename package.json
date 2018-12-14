@@ -1,0 +1,41 @@
+{
+    "name": "labs.droplit.io",
+    "version": "1.0.0",
+    "description": "Open Source projects created by Droplit",
+    "private": true,
+    "scripts": {
+        "debug": "webpack-dev-server --hot --mode=development",
+        "build": "webpack --mode=production",
+        "deploy": "node ./node_modules/vue-gh-pages/index.js"
+    },
+    "wst": "/dist/",
+    "author": "Chris Woodle <chris@droplit.io>",
+    "license": "ISC",
+    "devDependencies": {
+        "css-loader": "^1.0.0",
+        "node-sass": "^4.9.3",
+        "sass-loader": "^7.1.0",
+        "ts-loader": "^5.1.1",
+        "tslint": "^5.11.0",
+        "typescript": "^3.0.3",
+        "vue-gh-pages": "^1.19.0",
+        "vue-loader": "^15.4.2",
+        "vue-template-compiler": "^2.5.17",
+        "webpack": "^4.19.1",
+        "webpack-cli": "^3.1.0",
+        "webpack-dev-server": "^3.1.8"
+    },
+    "dependencies": {
+        "copy-webpack-plugin": "^4.6.0",
+        "eventemitter3": "^3.1.0",
+        "express": "^4.16.4",
+        "file-loader": "^2.0.0",
+        "html-webpack-plugin": "^3.2.0",
+        "rxjs": "^6.3.2",
+        "vue": "^2.5.17",
+        "vue-moment": "^4.0.0",
+        "vue-property-decorator": "^7.2.0",
+        "vue-router": "^3.0.1",
+        "vue-rx": "^6.0.1"
+    }
+}
