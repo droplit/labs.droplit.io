@@ -12,6 +12,7 @@ import './styles/styles.scss';
 
 
 // App
+import './assets/favicon.ico';
 import { Routes } from './routes';
 
 export const router = new VueRouter({
