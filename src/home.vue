@@ -11,12 +11,24 @@
         </div>
         <div class='container'>
             <div class='projects'>
-                <a class="project" v-for="project of projects" v-bind:key="project.name" v-bind:href='project.url' v-bind:style='{ background: project.background }'>
-                    <div class='name'>{{project.name}}</div>
-                    <div class='logo'>
-                        <img v-bind:src="'./assets/' + project.logo">
+                <div class="project" v-for="project of projects" v-bind:key="project.name">
+                    <div class='coming-soon' v-if="project.comingSoon">
+                        <div class='name'>{{project.name}}</div>
+                        <div class='logo'>
+                            <img v-bind:src="'./assets/' + project.logo">
+                        </div>
+                        <div class='banner'>
+                            <img src="assets/coming-soon-web.svg">
+                        </div>
                     </div>
-                </a>
+
+                    <a class="front" v-bind:href='project.url' v-bind:style='{ background: project.background }' v-if="!project.comingSoon">
+                        <div class='name'>{{project.name}}</div>
+                        <div class='logo'>
+                            <img v-bind:src="'./assets/' + project.logo">
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -28,7 +40,9 @@ import { Vue, Component } from 'vue-property-decorator';
 interface Project {
     name: string;
     url: string;
-    logo: string;
+    overview?: string; // Link to raw github md file
+    comingSoon?: boolean;
+    logo: string; // File name in ./asstes
     background?: string; // Hex color. i.e. #123abc 
 }
 
@@ -40,21 +54,25 @@ export default class Home extends Vue {
         {
             name: 'Universal-WS',
             url: 'https://github.com/droplit/universal-ws',
+            overview: 'https://raw.githubusercontent.com/droplit/universal-ws/master/overview.md',
             logo: 'UniversalWSLogo.svg',
         },
         {
             name: 'worqr',
             url: 'https://github.com/droplit/worqr',
+            overview: 'https://raw.githubusercontent.com/droplit/worqr/master/overview.md',
             logo: 'WorqrLogo.svg',
         },
         {
             name: 'bashr',
             url: 'https://github.com/droplit/bashr',
+            overview: 'https://raw.githubusercontent.com/droplit/bashr/master/overview.md',
             logo: 'BashrLogo.svg',
             background: '#E3E3E3'
         },
         {
             name: 'SerialTransport',
+            comingSoon: true,
             url: 'https://github.com/droplit/serial-transport',
             logo: 'SerialTransportLogo.svg',
         }
@@ -105,7 +123,7 @@ nav {
         grid-template-columns: repeat(3, 1fr);
         grid-auto-rows: 1fr;
         grid-gap: 15px;
-        padding:15px;
+        padding: 15px;
 
         @media (max-width: $width-tablets) {
             grid-template-columns: repeat(2, 1fr);
@@ -116,12 +134,39 @@ nav {
         }
 
         .project {
+            position: relative;
             display: block;
             background: #292b2e;
             text-align: center;
-            transition: background 200ms linear;
+            transition: all 200ms linear;
             &:hover {
                 background: lighten(#292b2e, 5%);
+                .front {
+                    // animation: 3s ease 0s normal forwards 1 fadein;
+                }
+            }
+            @keyframes fadein {
+                0% {
+                    opacity: 0;
+                }
+                66% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+            .coming-soon {
+                display: inline;
+                .banner {
+                    position: absolute;
+                    left: 0;
+                    top: 60px;
+                    width: 40%;
+                    img {
+                        width: 100%;
+                    }
+                }
             }
             .name {
                 height: 60px;
