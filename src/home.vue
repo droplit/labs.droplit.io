@@ -11,7 +11,7 @@
         </div>
         <div class='container'>
             <div class='projects'>
-                <div class="project" v-for="project of projects" v-bind:key="project.name">
+                <div class="project" v-for="project of projects" v-bind:key="project.name" v-bind:style='{ background: project.background }'>
 
                     <div class='coming-soon' v-if="project.comingSoon">
                         <div class='name'>{{project.name}}</div>
@@ -23,7 +23,7 @@
                         </div>
                     </div>
 
-                    <a class="front" v-bind:href='project.url' v-bind:style='{ background: project.background }' v-if="!project.comingSoon">
+                    <a class="front" v-bind:href='project.url'  v-if="!project.comingSoon">
                         <div class='name'>{{project.name}}</div>
                         <div class='logo'>
                             <img v-bind:src="'./assets/' + project.logo">
@@ -163,22 +163,20 @@ nav {
             background: #292b2e;
             text-align: center;
             transition: background 200ms linear;
-            a {
-                z-index: 1000;
-            }
             &:hover {
-                background: darken(#292b2e, 5%);
                 .front .logo {
                     opacity: 0.4;
                 }
                 .overview {
                     opacity: 1;
+                    background: rgba(0, 0, 0, 0.6);
                 }
             }
 
             .overview {
                 z-index: 0;
                 width: 100%;
+                height: calc(100% - 60px);
                 left: 0;
                 opacity: 0;
                 transition: opacity 200ms linear;
