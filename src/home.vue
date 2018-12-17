@@ -12,6 +12,7 @@
         <div class='container'>
             <div class='projects'>
                 <div class="project" v-for="project of projects" v-bind:key="project.name">
+
                     <div class='coming-soon' v-if="project.comingSoon">
                         <div class='name'>{{project.name}}</div>
                         <div class='logo'>
@@ -28,6 +29,9 @@
                             <img v-bind:src="'./assets/' + project.logo">
                         </div>
                     </a>
+                    <a class="overview" v-bind:href='project.url' v-if="!project.comingSoon">
+                        <vue-markdown v-bind:source="project.rawMarkdown"></vue-markdown>
+                    </a>
                 </div>
             </div>
         </div>
@@ -37,6 +41,10 @@
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator';
 
+import VueMarkdown from 'vue-markdown'
+
+import axios from 'axios';
+
 interface Project {
     name: string;
     url: string;
@@ -44,10 +52,13 @@ interface Project {
     comingSoon?: boolean;
     logo: string; // File name in ./asstes
     background?: string; // Hex color. i.e. #123abc 
+    rawMarkdown?: string // Markdown rendered. Will override "overview" if set;
 }
 
 @Component({
-    components: {}
+    components: {
+        VueMarkdown
+    }
 })
 export default class Home extends Vue {
     projects: Project[] = [
@@ -77,6 +88,19 @@ export default class Home extends Vue {
             logo: 'SerialTransportLogo.svg',
         }
     ];
+    created() {
+        for (const project of this.projects) {
+            if (project.overview && !project.rawMarkdown) {
+                axios({
+                    url: project.overview,
+                    method: 'GET',
+                }).then((response) => {
+                    project.rawMarkdown = response.data;
+                    this.$forceUpdate();
+                });
+            }
+        }
+    }
 }
 </script>
 
@@ -138,23 +162,33 @@ nav {
             display: block;
             background: #292b2e;
             text-align: center;
-            transition: all 200ms linear;
-            &:hover {
-                background: lighten(#292b2e, 5%);
-                .front {
-                    // animation: 3s ease 0s normal forwards 1 fadein;
-                }
+            transition: background 200ms linear;
+            a {
+                z-index: 1000;
             }
-            @keyframes fadein {
-                0% {
-                    opacity: 0;
+            &:hover {
+                background: darken(#292b2e, 5%);
+                .front .logo {
+                    opacity: 0.4;
                 }
-                66% {
-                    opacity: 0;
-                }
-                100% {
+                .overview {
                     opacity: 1;
                 }
+            }
+
+            .overview {
+                z-index: 0;
+                width: 100%;
+                left: 0;
+                opacity: 0;
+                transition: opacity 200ms linear;
+                color: #ffffff;
+                text-align: left;
+                padding: 20px;
+                position: absolute;
+                top: 60px;
+                font-size: 0.825em;
+                line-height: 1.25em;
             }
             .coming-soon {
                 display: inline;
@@ -178,6 +212,7 @@ nav {
             .logo {
                 padding: 15%;
                 height: calc(100% - 60px);
+                transition: opacity 200ms linear;
                 img {
                     width: 100%;
                     position: relative;

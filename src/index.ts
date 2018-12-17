@@ -10,7 +10,6 @@ Vue.use(VueRx);
 
 import './styles/styles.scss';
 
-
 // App
 import { Routes } from './routes';
 
