@@ -165,7 +165,7 @@ nav {
             transition: background 200ms linear;
             &:hover {
                 .front .logo {
-                    opacity: 0.4;
+                    opacity: .8;
                 }
                 .overview {
                     opacity: 1;
@@ -179,7 +179,7 @@ nav {
                 height: calc(100% - 60px);
                 left: 0;
                 opacity: 0;
-                transition: opacity 200ms linear;
+                transition: opacity 200ms linear, background 200ms linear;
                 color: #ffffff;
                 text-align: left;
                 padding: 20px;
