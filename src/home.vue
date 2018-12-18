@@ -23,7 +23,7 @@
                         </div>
                     </div>
 
-                    <a class="front" v-bind:href='project.url'  v-if="!project.comingSoon">
+                    <a class="front" v-bind:href='project.url' v-if="!project.comingSoon">
                         <div class='name'>{{project.name}}</div>
                         <div class='logo'>
                             <img v-bind:src="'./assets/' + project.logo">
@@ -149,6 +149,12 @@ nav {
         grid-gap: 15px;
         padding: 15px;
 
+        @media (max-width: $width-computer) {
+            .overview {
+                display: none;
+            }
+        }
+
         @media (max-width: $width-tablets) {
             grid-template-columns: repeat(2, 1fr);
         }
@@ -165,7 +171,7 @@ nav {
             transition: background 200ms linear;
             &:hover {
                 .front .logo {
-                    opacity: .8;
+                    opacity: 0.8;
                 }
                 .overview {
                     opacity: 1;
@@ -186,7 +192,8 @@ nav {
                 position: absolute;
                 top: 60px;
                 font-size: 0.825em;
-                line-height: 1.25em;
+                line-height: 1.5em;
+                overflow: hidden;
             }
             .coming-soon {
                 display: inline;
